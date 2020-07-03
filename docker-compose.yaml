@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+
+
+  redis-external-only:
+    image: grokzen/redis-cluster:5.0.5
+    environment:
+      INITIAL_PORT: 6379
+      IP: '0.0.0.0'
+      SENTINEL: 'false'
+      STANDALONE: 'false'
+      MASTERS: 3
+      SLAVES_PER_MASTER: 0
+    hostname: server
+    ports:
+      - '6379-6381:6379-6381'
+      - '5000-5010:5000-5010'
