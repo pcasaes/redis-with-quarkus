@@ -37,7 +37,7 @@ public class LettuceResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public Uni<String> set(@QueryParam("key") String key) {
+    public Uni<String> get(@QueryParam("key") String key) {
         return Uni.createFrom().converter(UniReactorConverters.fromMono(), this.getClient().reactive().get(key))
                 .onFailure()
                 .apply(r -> new ServiceUnavailableException());
